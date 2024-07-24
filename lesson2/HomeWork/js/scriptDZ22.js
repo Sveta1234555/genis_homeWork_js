@@ -192,26 +192,26 @@
  
 
 
-// // 5-----------------------------------------------
-// //Зробіть сервіс який отримує тризначне число
-// //Поверніть користувачу сумму цих чисел
+// 5-----------------------------------------------
+//Зробіть сервіс який отримує тризначне число
+//Поверніть користувачу сумму цих чисел
 
 
 
-// const num = prompt("Введіть тризначне число:");
-// let numn = Number(num);
-// if (Number.isNaN(numn) || !(numn >= 100 && numn <= 999)) {
-//     alert(`Ви ввели значення :  ${num}   . Це не тризначне число (100-999).`)
-// } else {
-//     // alert("Ура");
+const num = prompt("Введіть тризначне число:");
+let numn = Number(num);
+if (Number.isNaN(numn) || !(numn >= 100 && numn <= 999)) {
+    alert(`Ви ввели значення :  ${num}   . Це не тризначне число (100-999).`)
+} else {
+    // alert("Ура");
 
-//     let num1 = Math.floor(numn / 100);      // Math.floor(n)  -возвращает  целое число, меньшее или равно указанному n
-//     console.log(num1);   //5
-//     let num2 = Math.floor((numn - num1 * 100) / 10);
-//     console.log(num2);   //3
-//     let num3 = Math.floor(numn - num1 * 100 - num2 * 10);
-//     console.log(num3);   //2
-//     let sum = num1 + num2 + num3;       //10
-//     alert(`Ви ввели значення :  ${num}   . Сумма цих цифр =  ${sum}`);
-// }
+    let num1 = Math.floor(numn / 100);      // Math.floor(n)  -возвращает  целое число, меньшее или равно указанному n
+    console.log(num1);   //5
+    let num2 = Math.floor((numn - num1 * 100) / 10);
+    console.log(num2);   //3
+    let num3 = Math.floor(numn - num1 * 100 - num2 * 10);
+    console.log(num3);   //2
+    let sum = num1 + num2 + num3;       //10
+    alert(`Ви ввели значення :  ${num}   . Сумма цих цифр =  ${sum}`);
+}
 
