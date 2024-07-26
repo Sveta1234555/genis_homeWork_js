@@ -8,6 +8,7 @@
 // //----------------------------
 // //----------------------------
 // //области видимости
+// // глобальные, блочные 
 // //----------------------------
 // //----------------------------
 
@@ -378,7 +379,7 @@
 
 // //22:46мин
 // //----------------
-// //сравнение массивов
+// //сравнение массивов--------------------
 // //----------------
 // 5 == 5; // c приведением типов
 // 5 === 5;
@@ -417,7 +418,7 @@
 // console.log(b);        //5 т.к. его скопировали ПО ЗНАЧЕНИЮ
 // console.log(a);        //10
 
-// // сложные типы (объекты и массивы) клпируются по ссылке byREf
+// // сложные типы (объекты и массивы) копируются ПО ССЫЛКЕ byREf
 // let arr1 = [1, 2, 3];
 // let arr2_ = arr1;
 // console.log(arr1);        //Array(3) [ 1, 2, 3 ]
@@ -454,6 +455,9 @@
 // // delete удалаил значение, ключ-индес остался.!!!!
 // // поэтому с массивами так делать нельзя - удалять средний элемент с пом. delete!!!!!!!
 
+// //----------------------------
+// //         splice
+// //----------------------------
 // // //- splice(удалить с какого, сколько, полностью элемент)--------------------
 // //----------------------------
 // // let arr = ["a", "b", "c", "d", "f"];
@@ -461,6 +465,56 @@
 // // arr.splice(2, 1);       //со 2-го элемента, 1 один удлаить
 // // console.log(arr);       //Array(4) [ "a", "b", "d", "f" ]
 // // //удален средний - и значение, и ключ.
+
+
+// //----------------------------
+// // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+// // Метод splice() изменяет содержимое массива, удаляя существующие элементы и / или добавляя новые.
+// //----------------------------
+// //     array.splice(start[, deleteCount[, item1[, item2[, ...]]]])
+// // Примеры
+// // Удаляет 0 элементов по индексу 2 и вставляет "drum"
+// var myFish = ["angel", "clown", "mandarin", "sturgeon"];
+// var removed = myFish.splice(2, 0, "drum");
+// // myFish равен ["angel", "clown", "drum", "mandarin", "sturgeon"]
+// // removed равен [], ничего не удалено
+
+// // Удаляет 1 элемент по индексу 3
+// var myFish = ["angel", "clown", "drum", "mandarin", "sturgeon"];
+// var removed = myFish.splice(3, 1);
+// // removed равен ["mandarin"]
+// // myFish равен ["angel", "clown", "drum", "sturgeon"]
+
+// // Удаляет 1 элемент по индексу 2 и вставляет "trumpet"
+// var myFish = ["angel", "clown", "drum", "sturgeon"];
+// var removed = myFish.splice(2, 1, "trumpet");
+// // myFish равен ["angel", "clown", "trumpet", "sturgeon"]
+// // removed равен ["drum"]
+
+// // Удаляет 2 элемента начиная с индекса 0 и вставляет "parrot", "anemone" и "blue"
+// var myFish = ["angel", "clown", "trumpet", "sturgeon"];
+// var removed = myFish.splice(0, 2, "parrot", "anemone", "blue");
+// // myFish равен ["parrot", "anemone", "blue", "trumpet", "sturgeon"]
+// // removed равен ["angel", "clown"]
+
+// // Удаляет 2 элемента начиная с индекса 2
+// var myFish = ["parrot", "anemone", "blue", "trumpet", "sturgeon"];
+// var removed = myFish.splice(myFish.length - 3, 2);
+// // myFish равен ["parrot", "anemone", "sturgeon"]
+// // removed равен ["blue", "trumpet"]
+
+// // Удаляет 1 элемент по индексу -2
+// var myFish = ["angel", "clown", "mandarin", "sturgeon"];
+// var removed = myFish.splice(-2, 1);
+// // myFish равен ["angel", "clown", "sturgeon"]
+// // removed равен s ["mandarin"]
+
+// // Удаляет все элементы после индекса 2 (включительно)
+// var myFish = ["angel", "clown", "mandarin", "sturgeon"];
+// var removed = myFish.splice(2);
+// // myFish равен ["angel", "clown"]
+// // removed равен ["mandarin", "sturgeon"]
+
 
 
 // // - скопировать   ------------------------
@@ -480,9 +534,25 @@
 // console.log(arr.slice(1, 3));       //Array [ "b", "c" ]  с 1 до  2 (3-1), не включая 3й. <3-го
 // console.log(arr.slice(1, 2));       //Array [ "b" ]       с 1 до  1 (2-1), не включая 2й. <2-го
 
-// индекс 2 д.б. хотя бы на один больше индекс1!!!!!!!!!!. Иначе возвращается пусто
+// // индекс 2 д.б. хотя бы на один больше индекс1!!!!!!!!!!. Иначе возвращается пусто
 // console.log(arr.slice(1, 1));       //Array [ ]           с 1 до  1, не включая 1й. <1-го  .  т.е. пустой возврат
 // arr.slice(2, 1));       //Array [ ]           с 2 до  1, не включая 1й. <1-го  .  т.е. пустой возврат
+
+// //https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Array/slice
+// const animals = ['ant', 'bison', 'camel', 'duck', 'elephant'];
+// console.log(animals.slice(2));
+// // Expected output: Array ["camel", "duck", "elephant"]
+// console.log(animals.slice(2, 4));
+// // Expected output: Array ["camel", "duck"]
+// console.log(animals.slice(1, 5));
+// // Expected output: Array ["bison", "camel", "duck", "elephant"]
+// console.log(animals.slice(-2));
+// // Expected output: Array ["duck", "elephant"]
+// console.log(animals.slice(2, -1));
+// // Expected output: Array ["camel", "duck"]
+// console.log(animals.slice());
+// // Expected output: Array ["ant", "bison", "camel", "duck", "elephant"]
+
 
 
 // // //----------------------------
@@ -597,6 +667,117 @@
 // console.log(arr.includes("d",6));       //false
 
 
-// // //31:00мин
-// find
-// // //----------------------------
+// // // //31:00мин
+// // find
+// // // //----------------------------
+// const fruts = [
+//     { id: 0, name: "Apple" },
+//     { id: 1, name: "Tomat" },
+//     { id: 2, name: "Cherry" },
+//     { id: 3, name: "Orange" },
+// ];
+
+// // //поиск по id - name
+// // console.log(fruts.find((item) => item.id === 2));       //Object { id: 2, name: "Cherry" }
+// // console.log(fruts.find((item) => item.id === 1));       //Object { id: 1, name: "Tomat" }
+// // // минус find - ищет только превое вхождение.
+ 
+
+
+// // // //32:46мин
+// // filter
+// // // //----------------------------
+// //поиск всех вхождений искомого в массиве
+// console.log(fruts.filter((item) => item.id > 2));       //Array [ {…} ]
+//                                                         //Object { id: 3, name: "Orange" }
+//                                                         //length: 1
+
+// console.log(fruts.filter((item) => item.id < 2));       // Array [ {…}, {…} ]
+//                                                         // ​0: Object { id: 0, name: "Apple" }
+//                                                         // ​1: Object { id: 1, name: "Tomat" }
+//                                                         // ​length: 2
+
+// const fruts2 = [
+//     { id: 0, name: "Apple" },
+//     { id: 1, name: "Tomat" },
+//     { id: 2, name: "Cherry" },
+//     { id: 3, name: "Orange" },
+//     { id: 4, name: "Apple" },
+//     { id: 5, name: "Tomat" },
+// ];
+// console.log(fruts2.filter((item) => item.name == "Apple"));       // Array [ {…}, {…} ]
+//                                                                 // ​0: Object { id: 0, name: "Apple" }
+//                                                                 // ​1: Object { id: 4, name: "Apple" }
+//                                                                 // ​length: 2
+
+// console.log(fruts2.filter((item) => item.name == "Asgsgpple"));       // Array [] ​length: 0
+
+
+// // // //33:30мин
+// // map
+// // // //----------------------------
+// // самый часто использ.
+// //вызывает функцию для каждого элемента массива и возвращает массив с результатами
+
+
+// const fruts = [
+//     { id: 0, name: "Apple" },
+//     { id: 1, name: "Tomat" },
+//     { id: 2, name: "Cherry" },
+//     { id: 3, name: "Orange" },
+// ];
+// //длина всех элементов
+// let result = fruts.map((item) => item.name.length);
+// console.log(result);        //Array(4) [ 5, 5, 6, 6 ]
+
+// //  чаще map использ. для отрисовки - все фотки, всех item...
+
+
+
+// // // //34:33мин
+// // split
+// // // //----------------------------
+// //задача: есть строка с именами. С ними надо сделать что-то.
+// //удобнее работать с массивом. ПОэтому преобразуем строку в массив
+// let names = 'Оля, Юля, Аня, Петя';
+// let arr = names.split(", ");
+// console.log(names);         //Оля, Юля, Аня, Петя
+// console.log(arr);           //Array(4) [ "Оля", "Юля", "Аня", "Петя" ]
+//                                 // ​0: "Оля"
+//                                 // ​1: "Юля"
+//                                 // ​2: "Аня"
+//                                 // ​3: "Петя"
+//                                 // ​length: 4
+
+// // наоборот. Из массива сделать строку  - join
+// // // join
+// // // // //----------------------------
+// //параметр - что БУДЕТ разделать в строке элементы из массива
+// let newString = arr.join(" +");
+// console.log(newString);     //Оля +Юля +Аня +Петя
+// let newString2 = arr.join(", ");
+// console.log(newString2);     //Оля, Юля, Аня, Петя
+
+
+
+// // // //36:40мин
+// // reduce
+// // // //----------------------------
+// надо рассчитать одно значение на основе всего массива
+//сумма, например
+// let arr = [1, 2, 3, 4, 5];
+
+// let red = arr.reduce((sum, item) => sum + item);
+// // sum - аккумулятор, куда результат
+// console.log(red);       //15
+
+
+// // найти среднее
+// let arr2 = [23, 45, 30];
+// let summ = arr2.reduce((sum, item) => sum + item)/arr2.length;
+// console.log(summ);  //32.666666666666664
+
+// // // //39:51мин
+//Это основные - есть много др. методов работы с массивами
+// в библиотеках.
+//google
