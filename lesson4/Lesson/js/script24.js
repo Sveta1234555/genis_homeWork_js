@@ -560,7 +560,7 @@
 // // test("Hello");
 
 
-// // Особенности стрелочных функций - нет псевдомассива аругментов
+// // Особенности стрелочных функций - нет псевдомассива аргументов
 
 
 
@@ -606,27 +606,117 @@
 
 // c();  //c a b
 
-//32:02мин
-// практика. подсоединять ф-ции к чему-то
-console.log(document);      //HTMLDocument file:///D:/it/Fs_js/lesson4/Lesson/index24.html
+// //32:02мин
+// //-------------------------
+// // практика. подсоединять ф-ции к чему-то на странице
+// console.log(document);      //HTMLDocument file:///D:/it/Fs_js/lesson4/Lesson/index24.html
 
-// // дописываем в index24.html
-// <p>ffbfdh</p>
-// <label>
-//     input type="number" name="number"
-// </label>
+// // // дописываем в index24.html
+// // <p>ffbfdh</p>
+// // <label>
+// //     input type="number" name="number"
+// // </label>
 
-// цель - достучаться в document до <input 
-// const inputRef
-// договоренности имен Ref - считываем ссылку Ref.добавить к имении  - inputRef, а не просто input
-const numberRef = document.querySelector('input[name="number"]');
-// const numberRef = document.querySelector('.class');
-// const numberRef = document.querySelector('#id');
-console.log(numberRef);   //<input type="number" name="number">  и куча вложенностей служебных по треугольничкам открыавется
-// весь со вложенностями он нам не нужен. Надо только value
-console.log(numberRef.value);  //123
+// //-----------------------
+// // в html:
+// //     <label>
+// //       <p>введите цифру</p>
+// //       <input type="number" name="number" value="123" />
+// //       <input type="number" name="number456" value="456" />
+// //       <button>Go!</button>
+// //     </label>
 
-//стучимся к кнопочке в документе
-const buttonRef = document.querySelector("button");
-console.log(buttonRef.value); 
-36:55 мин.
+// //-----------------------
+// // цель - достучаться в document до <input
+// // const inputRef
+// // договоренности имен Ref - считываем ссылку Ref.добавить к имении  - inputRef, а не просто input
+// const numberRef = document.querySelector('input[name="number"]');
+// // const numberRef = document.querySelector('.class');
+// // const numberRef = document.querySelector('#id');
+// console.log(numberRef);   //<input type="number" name="number">  и куча вложенностей служебных по треугольничкам открыавется
+// // весь со вложенностями он нам не нужен. Надо только value
+// console.log(numberRef.value);  //123
+
+// //если таких объектов (input) 2 и более, по id искать...
+// const numberRef2 = document.querySelector('input[name="number456"]');
+// console.log(numberRef2.value);      //456
+
+
+// //-----------------------
+// //стучимся к кнопочке в документе.
+// //выдаст первый, который найдет
+// const buttonRef = document.querySelector("button");
+// // console.log(buttonRef.value);
+
+// console.log(buttonRef);         //chrome вывел: <button>Go!</button>
+//                                 //firefox вывел иначе : <button>  c треугольничком кучи выпадающих свойств
+
+// console.log(buttonRef.textContent);  //Go!
+
+
+// // 36:55 мин.
+// //так - найдена в тексте исходника кнопка.
+// //-----------------------
+// // А как  по ней действия сделать  программно
+// //можно повесить на кнопку Слухача
+// buttonRef.addEventListener('click', () => {
+//     console.log("click");
+//     //вівести numberRef (что в окне ввода) на момент натискання кнопки
+//     console.log(numberRef2.value);
+// });
+// //вівод в консоль - click
+
+// // теперь (добавили строку   console.log(numberRef2.value); в ф-ю) в консоль віведено:
+// // click
+// // 456654          //то, что в input2 біло написано
+
+// buttonRef.addEventListener('click', () => { });
+// // 1й аргумент ('click') - на какое событие должен сработать. Выпадает в разработчике список возможных событий
+// //          click выбрали из списка событий выпавших
+// // 2й аргумент - функция, яка буде виконуватись при цій події.
+
+
+// //-----------------------
+// Так из интерфейса отримаємо дані, і виконувати функції!!!!!!!!!!!!!!-----------
+const addNumber = (number) => { 
+    // let summ = number + 10;     //так віведет 55510
+    let summ = Number(number) + 10;         //565
+    return console.log(summ);
+};
+
+const numberRef_ = document.querySelector('input[name="number"]');
+const buttonRef_ = document.querySelector("button");
+buttonRef_.addEventListener("click", () => (addNumber(numberRef_.value)));      //55510
+
+
+// из input Всегда получаем String. поєтому +10 в символьном результат  "555"+10
+// let summ = Number(number) + 10;         //565
+// 40:13 мин
+
+// ИТого
+// querySelector  --------------
+// - (document.querySelector("button");) можно вішати на будь - які
+// теги, класи, по ИД
+// і отримувати значення з цих тегів
+
+// addEventListener --------------
+// За допомогою addEventListener можно обробляти подію
+// наприклад, по натисканнню на кнопку ..
+
+
+
+// в уроке было:
+// функции
+//     способы их объявления
+//         функций(function declaration)  реже всего используется.
+//         function expression  - чаще
+//     как называть ф - ции
+//     как ф - ции выполняются
+//     последовательность выполнения ф-ций
+        
+// стрелочные функции
+//     (у нее нет Arguments, нет this)
+    
+//     присоединяли слухачі подій
+//     отримувати посилання на html, на значения объектов
+         
