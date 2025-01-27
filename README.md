@@ -4,4 +4,5 @@
 [Homework 4_mod24](https://sveta1234555.github.io/genis_homeWork_js/lesson4/HomeWork/dz24.html)<br>
 [Homework 5_mod25](https://sveta1234555.github.io/genis_homeWork_js/lesson5/HomeWork/dz25.html)<br>
 [Homework 6_mod26](https://sveta1234555.github.io/genis_homeWork_js/lesson6/HomeWork/dz26.html)<br>
+[Homework 7_mod27](https://sveta1234555.github.io/genis_homeWork_js/lesson7/HomeWork/dz27.html)<br>
 Final Project (to be completed)
