@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>JS-mod28 - DZ8</title>
+  </head>
+  <body>
+    <h2>Домашня робота к мод28 (дз8)</h2>
+    <h3>DOM</h3>
+
+    <div data-widget-name="menu">Виберіть жанр</div>
+
+    <script>
+      // Вибираємо елемент з атрибутом data-widget-name
+      const element = document.querySelector("[data-widget-name]");
+
+      // Читаємо значення атрибута data-widget-name
+      const widgetName = element.getAttribute("data-widget-name");
+
+      // Виводимо значення в консоль
+      console.log(element); //  объект div
+      console.log(widgetName); //  "menu"
+
+      // Читаємо текстове вміст элементу
+      const textContent = element.textContent; // або element.innerText;
+
+      // Виводимо значення в консоль
+      console.log(textContent); // Виберіть жанр
+      console.log(element.innerHTML); //Виберіть жанр
+      console.log(element.innerText); // Виберіть жанр
+    </script>
+    <!-- <script src="./js/scriptDZ28.js"></script> -->
+  </body>
+</html>
+
+<!-- 
+<!DOCTYPE html>
+<html>
+  <body>
+    <div data-widget-name="menu">Виберіть жанр</div>
+    <script>
+      /* ваш код */
+    </script>
+  </body>
+</html> -->
