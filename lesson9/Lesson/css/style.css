@@ -1,0 +1,10 @@
+.buttonBlock {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonItem {
+  margin: 30px;
+  width: 88px;
+  height: 80px;
+}
