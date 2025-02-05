@@ -169,3 +169,135 @@ clickBtn9.addEventListener("click", infoclick);
 // ======================
 // обработка форм
 // ======================
+//
+//доб в html
+// <h2>js mod29 События</h2>
+// <form class="form">
+//   <input class="input" type="text" placeholder="login" />
+//   <input class="input" type="password" placeholder="password" />
+//   <button class="bthSub">Регистрация</button>
+// </form>
+//
+//доб в css
+// .form {
+//   margin: 0 auto;
+//   text-align: center;
+//   padding: 32px;
+// }
+
+// .input {
+//   margin: 10px;
+// }
+//
+//специфичное  (на form, а не на document)  навешивание слухачив:
+//это поиск объектов - элементов формы, страницы
+const form = document.querySelector(".form"); //с точкой - по классу
+// слухач на input - вешать не на document, а на form
+//ищем элемент    input, в котором есть type=text
+const loginInput = form.querySelector("input[type='text']"); //с точкой - по классу
+//на password
+const passInput = form.querySelector("input[type='password']"); //с точкой - по классу
+
+// добавляем addEventListener не на кнопку, а на форму
+//т.к. кнопка - в форме, и она(форма и будет слушать
+//внимание - рслушать событие не "click" , а "submit"
+form.addEventListener("submit", handleSubmit);
+
+//получает event
+function handleSubmit(event) {
+  event.preventDefault(); //ЧТобы не перегружалась страинца, надо остановить это событие
+  //на login
+  // const login = loginInput;
+  // console.log(login);      //это все свойства по объекту
+  // console.log(event);
+  const login = loginInput.value;
+  const password = passInput.value;
+  console.log(`Логин: ${login} , Пароль:  ${password}`); //значение введенное в input
+  form.reset(); //останавливали дефотную перезагрузку - теперь ее сделать таки
+}
+
+//в браузере - вводим в Login значение и жмем кнопку
+// в консоли - на секунду мелькнуло и улетело
+//т.к есть дефолтные события браузера
+//При нажатии на ссылку - автоматом на нее переходим.
+// Также с формой - как только отправляем форму (кнопкой submit),
+// 1. форма отправляется
+// 2. страница перезагружается
+// ЧТобы не перегружалась страинца, надо остановить это событие с пом.  event.preventDefault();
+// 9_form.png
+
+//ввели в форме логин пароль в инпуты - отразилось "Логин: yguyguhk.l , Пароль:  gjgdjh"
+
+// можно добавлять обработчики
+//После остановки перезагрухки старницы (  event.preventDefault();)
+// - после того, как все сделали, надо сделать таки перезагрузку  формы
+// form.reset();
+//после этого reset  очищаются input
+//состояние вывода после добавления reset() - в консоли выведены введенные данные в input,
+// а в браузере - очистились input-s
+
+// 21:31 мин
+// ======================
+// поширення подiй
+// ======================
+// 9_propagationСхема.png
+//
+// смотрим, как проплывает событие на 3 div-ах
+//доб в html
+// <div class="parent" id="parent">
+//   parent
+//   <div class="child" id="child">
+//     child
+//     <div class="item" id="item">
+//       item
+//     </div>
+//   </div>
+// </div>;
+//
+// CSS
+// .parent,
+// .child,
+// .item {
+//   margin: 30px;
+//   padding: 10px;
+//   outline: 1px solid #ffc107;
+// }
+
+// 'элементы для слухачей
+const parent = document.querySelector("#parentid");
+const child = document.querySelector("#child");
+const item = document.querySelector("#item");
+// // слухачи
+// parent.addEventListener("click", () => console.log("Click parent"));
+// child.addEventListener("click", () => console.log("Click child"));
+// item.addEventListener("click", () => console.log("Click item"));
+
+// нажали на item в браузере - в консоли все 3 click вывелись:
+// Click item
+// Click child
+// Click parent
+// поднялось от Item вверз по собтиям родителям
+
+// -------------- (закомент 3 слухача)
+//меняем на 1 обработчик
+const handleClick9 = (event) => {
+  console.log("event:", event.target);
+};
+
+//вешаем этот обработчик handleClick9 только на parent
+parent.addEventListener("click", handleClick9);
+
+// жмем на item - выводится в консоль item
+// event:  <div id="item" class="item"></div>
+
+// жмем на child - выводится в консоль child
+//event: <div id="child" class="child">
+
+// жмем на parent - выводится в консоль parent
+// event: <div id="parentid" class="parent">
+
+// т.о. можно обрабатывать и не разносить ф-цию  handleClick9 на абсолютно все внутри
+// ПОка не оч. поняла эту фразу
+
+// 28:20 мин
+// ======================
