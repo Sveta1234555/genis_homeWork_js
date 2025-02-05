@@ -8,3 +8,21 @@
   width: 88px;
   height: 80px;
 }
+
+.form {
+  margin: 0 auto;
+  text-align: center;
+  padding: 32px;
+}
+
+.input {
+  margin: 10px;
+}
+
+.parent,
+.child,
+.item {
+  margin: 30px;
+  padding: 10px;
+  outline: 1px solid #ffc107;
+}
