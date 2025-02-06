@@ -278,26 +278,204 @@ const item = document.querySelector("#item");
 // Click parent
 // поднялось от Item вверз по собтиям родителям
 
-// -------------- (закомент 3 слухача)
-//меняем на 1 обработчик
-const handleClick9 = (event) => {
-  console.log("event:", event.target);
+// // -------------- (закомент 3 слухача в предыд. примере. Добаим только один)
+// //меняем на 1 обработчик
+// const handleClick9 = (event) => {
+//   console.log("event:", event.target);
+// };
+
+// //вешаем этот обработчик handleClick9 только на parent, самого верхнего
+// parent.addEventListener("click", handleClick9);
+
+// // жмем на item - выводится в консоль item
+// // event:  <div id="item" class="item"></div>
+
+// // жмем на child - выводится в консоль child
+// //event: <div id="child" class="child">
+
+// // жмем на parent - выводится в консоль parent
+// // event: <div id="parentid" class="parent">
+
+// // т.о. можно обрабатывать и не разносить ф-цию  handleClick9 на абсолютно все внутри
+// // ПОка не оч. поняла эту фразу???
+// // всмысле по сравнению с предыд. методом - когда 3 слухача все включены были?
+// //там срабатывали все три вернее от нажатого вврерз все.
+// // А в последнем примере (1 слухач)  - только один кликнутый
+
+// 28:24 мин
+// ======================
+// если ненадо, чтобы распространение, всплытие шло вверх
+// event.stopPropagation();
+// ======================
+// -------------- (закомент предыд пример с одним слухачемhandleClick9)
+// создаем отдельные ф-ции
+const itemClick = (event) => {
+  console.log("itemClick stop");
+  event.stopPropagation();
 };
 
-//вешаем этот обработчик handleClick9 только на parent
-parent.addEventListener("click", handleClick9);
+const childClick = (event) => {
+  console.log("child stop");
+  event.stopPropagation();
+};
 
-// жмем на item - выводится в консоль item
-// event:  <div id="item" class="item"></div>
+const parentClick = (event) => {
+  console.log("parent stop");
+  event.stopPropagation();
+};
 
-// жмем на child - выводится в консоль child
-//event: <div id="child" class="child">
+// вешаем слухачи:
+parent.addEventListener("click", parentClick);
+child.addEventListener("click", childClick);
+item.addEventListener("click", itemClick);
 
-// жмем на parent - выводится в консоль parent
-// event: <div id="parentid" class="parent">
+//Проверка в браузере
+// клик по Item - в консоли пишет только item.себя
+// т.е. - не идет вверх, мы остановили всплытие
+// остановилось на  event.stopPropagation();
+//Лучше эту ф-цию без необходимости не использовать (много подводнгых камней)
 
-// т.о. можно обрабатывать и не разносить ф-цию  handleClick9 на абсолютно все внутри
-// ПОка не оч. поняла эту фразу
-
-// 28:20 мин
+// 31:10 мин
 // ======================
+// Делегирование
+// ======================
+// Делегирование надо, чтобы не повторять код однотипный много раз
+//
+//доб в html
+//внимание - li без id!!!
+// <ul class="nav">
+//   <li class="liItem">1</li>
+//   <li class="liItem">2</li>
+//   <li class="liItem">3</li>
+//   <li class="liItem">4</li>
+//   <li class="liItem">5</li>
+//   <li class="liItem">6</li>
+// </ul>;
+//
+// доб в css:
+// /* ----------------- */
+// .nav {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   list-style: none;
+// }
+
+// .liItem {
+//   margin: 20px;
+//   padding: 20px;
+//   border: 3px solid red;
+// }
+
+// .liItem.active {
+//   background-color: red;
+// }
+
+// 34:20 мин
+// слухача - будем вешать на nav только (на класс на ul)
+const nav = document.querySelector(".nav"); //с точкой - класс
+// т.е. слушаем только paarent-ом
+// собственно сам слухач:
+nav.addEventListener("click", handleClick8);
+
+// function handleClick8(event) {
+//   //смотреть - что нажали , какой event
+//   console.log(event.target);
+//   event.target.classList.add("active");
+// }
+
+//на что кликаем - тот и пишется в консоли
+
+//почему у меня -  объект пишет. Target нет в списке в консоли у меня
+// А в уроке пишет  в консоли "<li class="liItem">4</li>"
+// 9_ul_li.png
+//Потому что
+// Все ок. target - это и есть объект.У меня не пишет только цифру,
+// а так - тоже пишет в консоли "<li class="liItem">"
+// Если вывести event - там в списке есть target. И такой - как выводит, без цифры
+// ок
+
+// дописываем в ф-цию   строку event.target.classList.add("active");
+//эта строка дописывает в исходник html кликнутому элменту класс "active"
+//и соответственно -сразу отрисовывает фон по css для класса .liItem.active красный
+//9_nav_active.png
+// по клику - краснеет фон нв браузере в клкнутом элементе li
+
+//также можно прописать убирать фон
+//надо делать проверку.
+//переделваем ф-цию. пред верию закоментила
+function handleClick8(event) {
+  //смотреть - что нажали , какой event
+  console.log(event.target);
+  // event.target.classList.add("active");
+  // проверить - есть лди этот класс
+  // к nav.  т.к. только на nav есть слухач
+  //ищем "li.active"  - Li с классом active
+  const checkClass = nav.querySelector("li.active");
+  if (checkClass) {
+    //если есть  (true) - удалить (remove)
+    event.target.classList.remove("active");
+  } else {
+    event.target.classList.add("active");
+  }
+}
+
+//клик - закрашивае. 2-й клик на нее же - убирает цвет фона (класс active Из исходника html из классов)
+// 37:38 мин
+// ======================
+// drag and drop
+// ======================
+// перенос элемента
+// доб html
+// <div class="ball"></div>;
+// CSS
+// .ball {
+//   width: 50px;
+//   height: 50px;
+//   background-color: red;
+//   z-index: 20;
+//   position: absolute;
+//   border-radius: 50%;
+// }
+//
+
+// слухач
+const ball = document.querySelector(".ball");
+//ф-цияя
+ball.onmousedown = function (event) {
+  // центрируем красный мячик
+  function move(pageX, pageY) {
+    // console.log(ball.offsetWidth);
+    // console.log(pageX);
+    ball.style.left = pageX - ball.offsetWidth / 2 + "px";
+    ball.style.top = pageY - ball.offsetWidth / 2 + "px";
+  }
+
+  // переносим мяч под курсор и передаем координаты курсора ф-цией:
+  // move(event.pageX, event.pageY);
+
+  move(event.pageX, event.pageY);
+
+  // команду занесли в ф-цию, чтобы отработал ее вызов из слухача на 'mousemove'
+  function onMouseMove(event) {
+    move(event.pageX, event.pageY);
+  }
+  // слушаем event, вешаем слухача
+  document.addEventListener("mousemove", onMouseMove);
+  // отключение;
+  ball.onmouseup = function () {
+    document.removeEventListener("mousemove", onMouseMove);
+  };
+};
+
+// нажалин над кругом мышью
+// дальше лбое перемезщение мыши, не отпуская - с ней и шарик перемещается с мышью.
+// таскаем мячик по странице мышкой
+// отпустили мышь - шарик не перемещается
+
+//дописываем отключение - по отпусканию мыши - слухач снимается, мячик не двигается за мышью
+// см. 9_dragAndDrop.png
+
+// 44:06 мин
+// рассмотрели  основные слухачи
