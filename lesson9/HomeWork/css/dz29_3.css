@@ -1,0 +1,10 @@
+.node {
+  margin-bottom: 10px;
+}
+.node > ul {
+  display: none; /* Спочатку дочірні елементи приховані */
+  margin-left: 20px;
+}
+.node.open > ul {
+  display: block; /* Відкриваємо дочірні елементи */
+}

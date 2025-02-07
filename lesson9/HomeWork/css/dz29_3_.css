@@ -1,0 +1,35 @@
+.parent,
+.child,
+.item {
+  margin: 20px;
+  padding: 10px;
+  outline: 1px solid blue;
+}
+
+.node {
+  margin-bottom: 10px;
+}
+
+.node > * {
+  display: none; /* Спочатку дочірні елементи приховані */
+  margin-left: 20px;
+}
+.node.open > * {
+  display: block; /* Відкриваємо дочірні елементи */
+}
+
+/* 
+.node > p {
+  display: none; 
+  margin-left: 20px;} */
+
+/*.node.open > p {
+  display: block;
+} */
+
+/* .liItem.active {
+  background-color: red;
+} */
+.div.hiden {
+  background-color: red;
+}
