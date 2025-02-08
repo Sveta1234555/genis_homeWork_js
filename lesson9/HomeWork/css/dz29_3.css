@@ -1,10 +1,30 @@
 .node {
   margin-bottom: 10px;
 }
-.node > ul {
-  display: none; /* Спочатку дочірні елементи приховані */
+
+.node>ul {
+  display: none;
+  /* Спочатку дочірні елементи приховані */
   margin-left: 20px;
 }
-.node.open > ul {
-  display: block; /* Відкриваємо дочірні елементи */
+
+.node.open>ul {
+  display: block;
+  /* Відкриваємо дочірні елементи */
+}
+
+/* для v2 div parent-child-item */
+.parent,
+.child,
+.item {
+  display: block;
+  margin: 20px;
+  padding: 10px;
+  outline: 1px solid blue;
+}
+
+.hiden {
+  /* background-color: red; */
+  display: none;
+  /* Використовуємо display: none; */
 }
