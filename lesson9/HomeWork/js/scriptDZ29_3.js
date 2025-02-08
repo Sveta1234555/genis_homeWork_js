@@ -8,26 +8,22 @@ function toggleNode(element) {
   element.parentNode.classList.toggle("open");
 }
 
-// // Напишіть такий JavaScript, щоб після натискання на кнопку button, елемент
-// // <div id="text"> зникав.
+/* для v2 div parent-child-item */
+const elem8 = document.querySelector(".parent");
+elem8.addEventListener("click", handleClick8);
 
-// // Вибираємо елемент з атрибутом data-widget-name
-// const btn = document.querySelector("#btn");
-// // const elemDel = document.querySelector(`<div id="text">`);
-// // const elemDel = document.querySelector("#text");
-// let elemDel = document.getElementById("text");
+function handleClick8(event) {
+  // Знаходимо найближчого батька з класом parent, child або item
+  const target = event.target.closest(".parent, .child, .item");
 
-// btn.addEventListener("click", handleClick);
+  if (!target) return; // Якщо клік не по одному з цих елементів, нічого не робимо
 
-// function handleClick() {
-//   elemDel.remove();
-// }
+  // Знаходимо всіх прямих нащадків (дочірні елементи)
+  // const children = target.querySelectorAll("> div");
+  const children = target.querySelectorAll("div > div");
 
-// // см. mod28  lesson8  удаление элементов
-
-// // -----2----
-// // Напишіть такий код, щоб після натискання на кнопку, вона зникала.
-// btn.addEventListener("click", handleClickDelMe);
-// function handleClickDelMe() {
-//   btn.remove();
-// }
+  // Перемикаємо клас hiden у всіх дочірніх елементів
+  children.forEach((child) => {
+    child.classList.toggle("hiden");
+  });
+}
