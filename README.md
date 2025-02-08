@@ -9,5 +9,5 @@
 [Homework 9_mod29](https://sveta1234555.github.io/genis_homeWork_js/lesson9/HomeWork/dz29.html)<br>
 [Homework 9_mod29_3](https://sveta1234555.github.io/genis_homeWork_js/lesson9/HomeWork/dz29_3.html)<br>
 
-[Homework 9_mod29_3_](https://sveta1234555.github.io/genis_homeWork_js/lesson9/HomeWork/dz29_3_.html)<br>
+[Homework 9_mod29_3\_](https://sveta1234555.github.io/genis_homeWork_js/lesson9/HomeWork/dz29_3_.html)<br>
 Final Project (to be completed)
